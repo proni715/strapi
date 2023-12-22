@@ -5,7 +5,13 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    /**
+     * Override the default upload info formatter with custom function.
+     */
+    strapi.services["plugin::upload.upload"].formatFileInfo =
+      require("./extensions/upload/overrides").formatFileInfoOverride;
+  },
 
   /**
    * An asynchronous bootstrap function that runs before

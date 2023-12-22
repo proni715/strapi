@@ -362,40 +362,35 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCommentReplyCommentReply extends Schema.CollectionType {
-  collectionName: 'comment_replies';
+export interface ApiQrcodeQrcode extends Schema.CollectionType {
+  collectionName: 'qrcodes';
   info: {
-    singularName: 'comment-reply';
-    pluralName: 'comment-replies';
-    displayName: 'comment-reply';
+    singularName: 'qrcode';
+    pluralName: 'qrcodes';
+    displayName: 'Qrcode';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    text: Attribute.String;
-    comment: Attribute.Relation<
-      'api::comment-reply.comment-reply',
-      'manyToOne',
-      'api::post-comment.post-comment'
-    >;
-    media: Attribute.Media;
-    user: Attribute.Relation<
-      'api::comment-reply.comment-reply',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
+    code: Attribute.String;
+    title: Attribute.String;
+    author: Attribute.String;
+    file: Attribute.String;
+    description: Attribute.String;
+    media: Attribute.Media & Attribute.Required;
+    picture: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::comment-reply.comment-reply',
+      'api::qrcode.qrcode',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::comment-reply.comment-reply',
+      'api::qrcode.qrcode',
       'oneToOne',
       'admin::user'
     > &
@@ -403,79 +398,32 @@ export interface ApiCommentReplyCommentReply extends Schema.CollectionType {
   };
 }
 
-export interface ApiPostPost extends Schema.CollectionType {
-  collectionName: 'posts';
+export interface ApiQrstatQrstat extends Schema.CollectionType {
+  collectionName: 'qrstats';
   info: {
-    singularName: 'post';
-    pluralName: 'posts';
-    displayName: 'Post';
+    singularName: 'qrstat';
+    pluralName: 'qrstats';
+    displayName: 'Qrstat';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    content: Attribute.String;
-    user: Attribute.Relation<
-      'api::post.post',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    media: Attribute.Media;
-    comments: Attribute.Relation<
-      'api::post.post',
-      'oneToMany',
-      'api::post-comment.post-comment'
-    >;
+    time: Attribute.DateTime;
+    user: Attribute.String;
+    code: Attribute.String;
+    platform: Attribute.Enumeration<['ios', 'android']> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiPostCommentPostComment extends Schema.CollectionType {
-  collectionName: 'post_comments';
-  info: {
-    singularName: 'post-comment';
-    pluralName: 'post-comments';
-    displayName: 'Post Comment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    text: Attribute.String;
-    post: Attribute.Relation<
-      'api::post-comment.post-comment',
-      'manyToOne',
-      'api::post.post'
-    >;
-    user: Attribute.Relation<
-      'api::post-comment.post-comment',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    attachments: Attribute.Media;
-    replies: Attribute.Relation<
-      'api::post-comment.post-comment',
-      'oneToMany',
-      'api::comment-reply.comment-reply'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::post-comment.post-comment',
+      'api::qrstat.qrstat',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::post-comment.post-comment',
+      'api::qrstat.qrstat',
       'oneToOne',
       'admin::user'
     > &
@@ -781,21 +729,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    posts: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::post.post'
-    >;
-    comments: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::post-comment.post-comment'
-    >;
-    comment_replies: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::comment-reply.comment-reply'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -823,9 +756,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::comment-reply.comment-reply': ApiCommentReplyCommentReply;
-      'api::post.post': ApiPostPost;
-      'api::post-comment.post-comment': ApiPostCommentPostComment;
+      'api::qrcode.qrcode': ApiQrcodeQrcode;
+      'api::qrstat.qrstat': ApiQrstatQrstat;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "qrcodes",
+  "info": {
+    "singularName": "qrcode",
+    "pluralName": "qrcodes",
+    "displayName": "Qrcode",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "file": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "videos",
+        "audios"
+      ]
+    },
+    "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

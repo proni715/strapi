@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "qrstats",
+  "info": {
+    "singularName": "qrstat",
+    "pluralName": "qrstats",
+    "displayName": "Qrstat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "time": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "ios",
+        "android"
+      ],
+      "required": true
+    }
+  }
+}

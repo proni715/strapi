@@ -1,5 +1,5 @@
 {
-  "name": "strapi",
+  "name": "bible-scanner-strapi",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -12,11 +12,12 @@
   "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-cloud": "4.15.5",
-    "@strapi/plugin-documentation": "4.15.5",
+    "@strapi/plugin-documentation": "^4.15.5",
     "@strapi/plugin-i18n": "4.15.5",
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/strapi": "4.15.5",
-    "pg": "8.8.0",
+    "mysql": "2.18.1",
+    "mysql2": "^3.6.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
@@ -26,7 +27,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "3aaa5ae6-3254-4556-b10f-e963efd76106"
+    "uuid": "db2e320b-5808-4f1f-9953-e4b0069154e9"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
